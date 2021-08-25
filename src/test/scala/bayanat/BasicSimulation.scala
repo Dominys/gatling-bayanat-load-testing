@@ -37,13 +37,13 @@ class BasicSimulation extends Simulation {
     jumpToRps(300),
     holdFor(10.seconds),
     jumpToRps(400),
+    holdFor(10.seconds),
+    jumpToRps(1000),
+    holdFor(10.seconds),
+    jumpToRps(1500),
+    holdFor(10.seconds),
+    jumpToRps(2000),
     holdFor(10.seconds)
-//    jumpToRps(200),
-//    holdFor(10.seconds),
-//    jumpToRps(1000),
-//    holdFor(10.seconds),
-//    jumpToRps(1500),
-//    holdFor(10.seconds)
   ).protocols(httpProtocol)
 
 }
