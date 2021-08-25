@@ -31,19 +31,19 @@ class BasicSimulation extends Simulation {
 
   setUp(scn.inject(atOnceUsers(100000))).throttle(
     reachRps(100).in(5.seconds),
-    holdFor(10.seconds),
+    holdFor(30.seconds),
     jumpToRps(200),
-    holdFor(10.seconds),
+    holdFor(30.seconds),
     jumpToRps(300),
-    holdFor(10.seconds),
+    holdFor(30.seconds),
     jumpToRps(400),
-    holdFor(10.seconds),
+    holdFor(30.seconds),
     jumpToRps(1000),
-    holdFor(10.seconds),
+    holdFor(30.seconds),
     jumpToRps(1500),
-    holdFor(10.seconds),
+    holdFor(30.seconds),
     jumpToRps(2000),
-    holdFor(10.seconds)
+    holdFor(30.seconds)
   ).protocols(httpProtocol)
 
 }
