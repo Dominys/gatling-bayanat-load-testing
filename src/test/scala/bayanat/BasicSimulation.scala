@@ -29,20 +29,16 @@ class BasicSimulation extends Simulation {
       .check(jsonPath("$..address").exists)
       .check(jsonPath("$..LongLabel").is("${address}")))
 
-  setUp(scn.inject(atOnceUsers(100000))).throttle(
-    reachRps(100).in(5.seconds),
+  setUp(scn.inject(atOnceUsers(5000))).throttle(
+    reachRps(1).in(5.seconds),
     holdFor(30.seconds),
-    jumpToRps(200),
+    jumpToRps(10),
     holdFor(30.seconds),
-    jumpToRps(300),
+    jumpToRps(20),
     holdFor(30.seconds),
-    jumpToRps(400),
+    jumpToRps(30),
     holdFor(30.seconds),
-    jumpToRps(1000),
-    holdFor(30.seconds),
-    jumpToRps(1500),
-    holdFor(30.seconds),
-    jumpToRps(2000),
+    jumpToRps(100),
     holdFor(30.seconds)
   ).protocols(httpProtocol)
 
