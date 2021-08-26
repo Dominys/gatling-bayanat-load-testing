@@ -29,7 +29,7 @@ class BasicSimulation extends Simulation {
       .check(jsonPath("$..address").exists)
       .check(jsonPath("$..LongLabel").is("${address}")))
 
-  setUp(scn.inject(atOnceUsers(50000))).throttle(
+  setUp(scn.inject(atOnceUsers(80000))).throttle(
     reachRps(1).in(5.seconds),
     holdFor(30.seconds),
     jumpToRps(10),
