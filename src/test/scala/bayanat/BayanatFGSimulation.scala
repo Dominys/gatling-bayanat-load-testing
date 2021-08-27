@@ -38,6 +38,10 @@ class BayanatFGSimulation extends Simulation {
     holdFor(30.seconds),
     jumpToRps(100),
     holdFor(30.seconds),
+    jumpToRps(200),
+    holdFor(30.seconds),
+    jumpToRps(300),
+    holdFor(30.seconds),
     jumpToRps(400),
     holdFor(30.seconds)
 //    ,
