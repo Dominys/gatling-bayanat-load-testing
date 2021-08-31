@@ -19,7 +19,7 @@ class BayanatFGSimulation extends Simulation {
   val scn = scenario("Scenario Name") // A scenario is a chain of requests and pauses
     .feed(csvFeeder)
     .exec(http("reverse geocode FG")
-      .get("/staging/geocode")
+      .get("/prod/geocode")
       .queryParam("callerid", "1")
       .queryParam("lat", "${lat}")
       .queryParam("lon", "${lon}")
