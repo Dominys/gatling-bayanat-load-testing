@@ -32,12 +32,14 @@ class BayanatFGSimulation extends Simulation {
                    constantUsersPerSec(400) during(10.hours))).throttle(
     reachRps(100).in(5.seconds),
     holdFor(5.minutes),
-    reachRps(200).in(5.seconds),
+    reachRps(0).in(5.seconds),
     holdFor(5.minutes),
     reachRps(300).in(5.seconds),
-    holdFor(5.minutes),
-    reachRps(400).in(5.seconds),
-    holdFor(10.hours)
+    holdFor(5.minutes)
+//    ,
+//    reachRps(400).in(5.seconds),
+//    holdFor(10.hours),
+
 //    holdFor(30.seconds),
 //    jumpToRps(100),
 //    holdFor(30.seconds),
