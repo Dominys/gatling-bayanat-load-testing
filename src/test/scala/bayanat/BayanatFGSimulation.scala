@@ -28,7 +28,7 @@ class BayanatFGSimulation extends Simulation {
       .check(jsonPath("$..status").is("200"))
       .check(jsonPath("$..address").is("${address}")))
 
-  setUp(scn.inject(atOnceUsers(800000))).throttle(
+  setUp(scn.inject(rampUsers(1000000).during(4.minutes))).throttle(
     reachRps(1).in(5.seconds),
     holdFor(30.seconds),
     jumpToRps(10),
