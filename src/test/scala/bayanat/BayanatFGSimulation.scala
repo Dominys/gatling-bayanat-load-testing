@@ -33,7 +33,7 @@ class BayanatFGSimulation extends Simulation {
                     constantUsersPerSec(450) during(2.hours)
 //                    nothingFor(30.minutes),
 //                    constantUsersPerSec(400) during(4.hours))
-  ).throttle(
+  )).throttle(
 //    reachRps(100).in(5.seconds),
 //    holdFor(15.minutes),
 //    reachRps(400).in(5.seconds),
