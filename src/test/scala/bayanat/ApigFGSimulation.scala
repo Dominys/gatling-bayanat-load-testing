@@ -27,7 +27,7 @@ class ApigFGSimulation extends Simulation {
 
   setUp(scn.inject(atOnceUsers(10000),
 //                    nothingFor(15.minutes),
-                    constantUsersPerSec(5000) during(2.hours)
+                    constantUsersPerSec(500) during(5.minutes)
 //                    nothingFor(30.minutes),
 //                    constantUsersPerSec(400) during(4.hours))
   )).throttle(
@@ -37,7 +37,7 @@ class ApigFGSimulation extends Simulation {
 //    holdFor(4.hours),
 //    reachRps(0).in(5.seconds),
 //    holdFor(30.minutes),
-    reachRps(5000).in(5.seconds),
+    reachRps(500).in(5.seconds),
     holdFor(5.minutes)
 //    ,
 //    reachRps(0).in(30.minutes)
