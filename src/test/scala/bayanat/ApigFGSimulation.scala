@@ -31,6 +31,8 @@ class ApigFGSimulation extends Simulation {
                     constantUsersPerSec(400) during(5.minutes),
                     constantUsersPerSec(500) during(5.minutes),
                     constantUsersPerSec(600) during(5.minutes),
+                    constantUsersPerSec(700) during(5.minutes),
+                    constantUsersPerSec(800) during(5.minutes),
 //                    nothingFor(30.minutes),
 //                    constantUsersPerSec(400) during(4.hours))
   )).throttle(
@@ -41,6 +43,10 @@ class ApigFGSimulation extends Simulation {
     reachRps(500).in(5.seconds),
     holdFor(5.minutes),
     reachRps(600).in(5.seconds),
+    holdFor(5.minutes),
+    reachRps(700).in(5.seconds),
+    holdFor(5.minutes),
+    reachRps(800).in(5.seconds),
     holdFor(5.minutes)
 
     //    ,
