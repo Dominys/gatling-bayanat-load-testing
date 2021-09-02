@@ -9,7 +9,7 @@ import scala.util.Random
 class ApigFGSimulation extends Simulation {
 
   val httpProtocol = http
-    .baseUrl("http://localhost:8080") // Here is the root for all relative URLs
+    .baseUrl("https://10.132.170.225") // Here is the root for all relative URLs
     .acceptHeader("text/html,application/json,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8") // Here are the common headers
     .acceptEncodingHeader("gzip, deflate")
     .acceptLanguageHeader("en-US,en;q=0.5")
@@ -20,7 +20,7 @@ class ApigFGSimulation extends Simulation {
   val scn = scenario("Scenario Name") // A scenario is a chain of requests and pauses
     .feed(feeder)
     .exec(http("reverse geocode FG")
-      .get("/test/object")
+      .get("/testFG")
       .queryParam("id", "${id}")
       .check(status.is(200))
       .check(jsonPath("$..error").notExists))
