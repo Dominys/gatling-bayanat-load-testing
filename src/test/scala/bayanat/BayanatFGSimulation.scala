@@ -19,7 +19,7 @@ class BayanatFGSimulation extends Simulation {
   val scn = scenario("Scenario Name") // A scenario is a chain of requests and pauses
     .feed(csvFeeder)
     .exec(http("reverse geocode FG")
-      .get("/prod/geocode")
+      .get("/geocode")
       .queryParam("callerid", "1")
       .queryParam("lat", "${lat}")
       .queryParam("lon", "${lon}")
@@ -28,44 +28,45 @@ class BayanatFGSimulation extends Simulation {
       .check(jsonPath("$..status").is("200"))
       .check(jsonPath("$..address").is("${address}")))
 
-  setUp(scn.inject(atOnceUsers(10000),
-//                    nothingFor(15.minutes),
-                    constantUsersPerSec(450) during(2.hours)
-//                    nothingFor(30.minutes),
-//                    constantUsersPerSec(400) during(4.hours))
-  )).throttle(
-//    reachRps(100).in(5.seconds),
-//    holdFor(15.minutes),
-//    reachRps(400).in(5.seconds),
-//    holdFor(4.hours),
-//    reachRps(0).in(5.seconds),
-//    holdFor(30.minutes),
-    reachRps(450).in(5.seconds),
-    holdFor(2.hours)
-//    ,
-//    reachRps(0).in(30.minutes)
-//    ,
-//    reachRps(400).in(5.seconds),
-//    holdFor(10.hours),
+  setUp(scn.inject(atOnceUsers(100000),
+    nothingFor(15.minutes),
+    constantUsersPerSec(400) during (4.hours),
+    nothingFor(30.minutes),
+    constantUsersPerSec(400) during (4.hours)))
+    .throttle(
+    reachRps(100).in(5.seconds),
+    holdFor(15.minutes),
+    reachRps(400).in(5.seconds),
+    holdFor(4.hours),
+    reachRps(0).in(5.seconds),
+    holdFor(30.minutes),
+    reachRps(400).in(5.seconds),
+    holdFor(4.hours),
+    reachRps(0).in(30.minutes)
+    //    ,
+    //    reachRps(0).in(30.minutes)
+    //    ,
+    //    reachRps(400).in(5.seconds),
+    //    holdFor(10.hours),
 
-//    holdFor(30.seconds),
-//    jumpToRps(100),
-//    holdFor(30.seconds),
-//    jumpToRps(200),
-//    holdFor(30.seconds),
-//    jumpToRps(300),
-//    holdFor(30.seconds),
-//    jumpToRps(400),
-//    holdFor(30.minutes)
-//    ,
-//    jumpToRps(500),
-//    holdFor(30.seconds),
-//    jumpToRps(600),
-//    holdFor(30.seconds),
-//    jumpToRps(700),
-//    holdFor(30.seconds),
-//    jumpToRps(800),
-//    holdFor(30.seconds)
+    //    holdFor(30.seconds),
+    //    jumpToRps(100),
+    //    holdFor(30.seconds),
+    //    jumpToRps(200),
+    //    holdFor(30.seconds),
+    //    jumpToRps(300),
+    //    holdFor(30.seconds),
+    //    jumpToRps(400),
+    //    holdFor(30.minutes)
+    //    ,
+    //    jumpToRps(500),
+    //    holdFor(30.seconds),
+    //    jumpToRps(600),
+    //    holdFor(30.seconds),
+    //    jumpToRps(700),
+    //    holdFor(30.seconds),
+    //    jumpToRps(800),
+    //    holdFor(30.seconds)
   ).protocols(httpProtocol)
 
 }
