@@ -31,12 +31,19 @@ class BayanatDirectSimulation extends Simulation {
 
   setUp(scn.inject(atOnceUsers(80000))).throttle(
     reachRps(1).in(5.seconds),
-    holdFor(30.seconds),
     jumpToRps(10),
     holdFor(30.seconds),
     jumpToRps(20),
     holdFor(30.seconds),
     jumpToRps(30),
+    holdFor(30.seconds),
+    jumpToRps(60),
+    holdFor(30.seconds),
+    jumpToRps(100),
+    holdFor(30.seconds),
+    jumpToRps(200),
+    holdFor(30.seconds),
+    jumpToRps(300),
     holdFor(30.seconds),
     jumpToRps(400),
     holdFor(30.seconds)
