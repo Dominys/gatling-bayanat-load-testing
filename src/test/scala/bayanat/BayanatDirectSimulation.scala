@@ -6,7 +6,7 @@ import scala.concurrent.duration._
 
 class BayanatDirectSimulation extends Simulation {
 
-  val token = "YSBZ3hzexjSV8rOutQ510B_2adhafY3GRdE8YXcoqTXn-KSrIQRww1TyrxkqQ-2ySRij4AAVDl2nxI8T2JEOeBWcr_28cnrjJbcdb448GngNck69izS2j7__BNHANPCukPopilmc4sv2QF3fCwrV_w.."
+  val token = "S00tcMIXrdk0wTMNdezdF54T2ItR0BwCP5Yd7bpwwWdI2sserXKj02hV6Y-CpX8PYDFTq8fFZLvVuUvzLUhar9-wpwS6HOOefF9zO6-QgrpXSZ8OOOtM4o0c3bznWydNwVd2-ezLAOs3Au3cNPWJwQ.."
 
   val httpProtocol = http
     .baseUrl("https://maps.bayanat.co.ae") // Here is the root for all relative URLs
@@ -15,19 +15,19 @@ class BayanatDirectSimulation extends Simulation {
     .acceptLanguageHeader("en-US,en;q=0.5")
     .userAgentHeader("Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:16.0) Gecko/20100101 Firefox/16.0")
 
-  val csvFeeder = separatedValues("geolocations.csv", '#').eager.random
+  val csvFeeder = separatedValues("matchAddrGeolocations.csv", '#').eager.random
 
   val scn = scenario("Scenario Name") // A scenario is a chain of requests and pauses
     .feed(csvFeeder)
     .exec(http("reverse geocode")
-      .post("/arcgis/rest/services/FederalCustomsAuthority/POIs_Address_Locator/GeocodeServer/reverseGeocode")
+      .post("/arcgis/rest/services/FederalCustomsAuthority/FCAAddressLocator/GeocodeServer/reverseGeocode")
       .queryParam("location", "${lon},${lat}")
       .queryParam("token", token)
       .queryParam("f", "json")
       .check(status.is(200))
       .check(jsonPath("$..error").notExists)
       .check(jsonPath("$..address").exists)
-      .check(jsonPath("$..LongLabel").is("${address}")))
+      .check(jsonPath("$..Match_addr").is("${address}")))
 
   setUp(scn.inject(atOnceUsers(80000))).throttle(
     reachRps(1).in(5.seconds),
