@@ -30,19 +30,20 @@ class BayanatFGSimulation extends Simulation {
 
   setUp(scn.inject(atOnceUsers(100000),
     nothingFor(15.minutes),
-    constantUsersPerSec(400) during (4.hours),
-    nothingFor(30.minutes),
-    constantUsersPerSec(400) during (4.hours)))
+    constantUsersPerSec(400) during (15.minutes)
+//    nothingFor(30.minutes),
+//    constantUsersPerSec(400) during (4.hours))
+  )
     .throttle(
     reachRps(100).in(5.seconds),
     holdFor(15.minutes),
     reachRps(400).in(5.seconds),
-    holdFor(4.hours),
-    reachRps(0).in(5.seconds),
-    holdFor(30.minutes),
-    reachRps(400).in(5.seconds),
-    holdFor(4.hours),
-    reachRps(0).in(30.minutes)
+    holdFor(15.minutes)
+//    reachRps(0).in(5.seconds),
+//    holdFor(30.minutes),
+//    reachRps(400).in(5.seconds),
+//    holdFor(4.hours),
+//    reachRps(0).in(30.minutes)
     //    ,
     //    reachRps(0).in(30.minutes)
     //    ,
