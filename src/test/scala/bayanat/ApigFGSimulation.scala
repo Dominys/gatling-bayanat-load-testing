@@ -65,8 +65,6 @@ class ApigFGSimulation extends Simulation {
 //    holdFor(5.minutes),
 //    reachRps(700).in(5.seconds),
 //    holdFor(5.minutes),
-    reachRps(1200).in(5.minutes),
-    holdFor(10.minutes)
 
     //    ,
 //    reachRps(0).in(30.minutes)
