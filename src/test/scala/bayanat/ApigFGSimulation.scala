@@ -9,7 +9,7 @@ import scala.util.Random
 class ApigFGSimulation extends Simulation {
 
   val httpProtocol = http
-    .baseUrl("https://10.132.170.225") // Here is the root for all relative URLs
+    .baseUrl("https://10.132.172.234") // Here is the root for all relative URLs
     .acceptHeader("text/html,application/json,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8") // Here are the common headers
     .acceptEncodingHeader("gzip, deflate")
     .acceptLanguageHeader("en-US,en;q=0.5")
@@ -27,9 +27,17 @@ class ApigFGSimulation extends Simulation {
 
   setUp(scn.inject(atOnceUsers(10000),
 //                    nothingFor(15.minutes),
-                    rampUsersPerSec(1).to(300).during(5.minutes),
-                    rampUsersPerSec(300).to(1200).during(5.minutes),
-                    constantUsersPerSec(1200) during(10.minutes)
+    rampUsersPerSec(1) to(100) during(10.minutes),
+    constantUsersPerSec(100) during(30.minutes),
+    rampUsersPerSec(100) to(400) during(30.minutes),
+    constantUsersPerSec(400) during(2.hours),
+    rampUsersPerSec(400) to(800) during(30.minutes),
+    constantUsersPerSec(800) during(2.hours),
+    rampUsersPerSec(800) to(900) during(5.minutes),
+    constantUsersPerSec(900) during(2.hours),
+    rampUsersPerSec(900) to(1000) during(5.minutes),
+    constantUsersPerSec(1000) during(1.hours),
+    rampUsersPerSec(1000) to(1) during(10.minutes)
 //                    constantUsersPerSec(400) during(5.minutes),
 //                    constantUsersPerSec(500) during(5.minutes),
 //                    constantUsersPerSec(600) during(5.minutes),
@@ -38,8 +46,17 @@ class ApigFGSimulation extends Simulation {
 //                    nothingFor(30.minutes),
 //                    constantUsersPerSec(400) during(4.hours))
   )).throttle(
-    reachRps(300).in(5.minutes),
-    holdFor(5.seconds),
+    reachRps(100).in(10.minutes),
+    holdFor(30.minutes),
+    reachRps(400).in(30.minutes),
+    holdFor(2.hours),
+    reachRps(800).in(30.minutes),
+    holdFor(2.hours),
+    reachRps(900).in(5.minutes),
+    holdFor(2.hours),
+    reachRps(1000).in(5.minutes),
+    holdFor(1.hours),
+    reachRps(100).in(10.minutes)
 //    reachRps(400).in(5.seconds),
 //    holdFor(5.minutes),
 //    reachRps(500).in(5.seconds),
