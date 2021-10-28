@@ -6,7 +6,7 @@ import scala.concurrent.duration._
 
 class BayanatDirectSimulation extends Simulation {
 
-  val token = "S00tcMIXrdk0wTMNdezdF54T2ItR0BwCP5Yd7bpwwWdI2sserXKj02hV6Y-CpX8PYDFTq8fFZLvVuUvzLUhar9-wpwS6HOOefF9zO6-QgrpXSZ8OOOtM4o0c3bznWydNwVd2-ezLAOs3Au3cNPWJwQ.."
+  val token = "-ebFG8c_Tiogz75w9uDrcegjO58cnoFfvHidXU0YEpv64U5-IvAAoTGFdKO1zKmiGEcxC2Z5jgw8mq937agqWkfqDU6eWXP5y8pYKy3yiR3-D2VaKZm1o3NhjL-5pErQhzE1lR_54sAfnFU16TO9xw.."
 
   val httpProtocol = http
     .baseUrl("https://maps.bayanat.co.ae") // Here is the root for all relative URLs
@@ -20,7 +20,7 @@ class BayanatDirectSimulation extends Simulation {
   val scn = scenario("Scenario Name") // A scenario is a chain of requests and pauses
     .feed(csvFeeder)
     .exec(http("reverse geocode")
-      .post("/arcgis/rest/services/FederalCustomsAuthority/FCAAddressLocator/GeocodeServer/reverseGeocode")
+      .post("/arcgis/rest/services/FederalCustomsAuthority/ReverseGeocoder/GeocodeServer/reverseGeocode")
       .queryParam("location", "${lon},${lat}")
       .queryParam("token", token)
       .queryParam("f", "json")
@@ -40,12 +40,12 @@ class BayanatDirectSimulation extends Simulation {
     jumpToRps(60),
     holdFor(5.minutes),
     jumpToRps(100),
-    holdFor(5.minutes),
-    jumpToRps(200),
-    holdFor(5.minutes),
-    jumpToRps(300),
-    holdFor(5.minutes),
-    jumpToRps(400),
+//    holdFor(5.minutes),
+//    jumpToRps(200),
+//    holdFor(5.minutes),
+//    jumpToRps(300),
+//    holdFor(5.minutes),
+//    jumpToRps(400),
     holdFor(5.minutes)
 //    ,
 //    jumpToRps(500),
