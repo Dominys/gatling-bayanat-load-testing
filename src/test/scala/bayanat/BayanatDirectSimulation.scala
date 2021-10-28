@@ -46,7 +46,7 @@ class BayanatDirectSimulation extends Simulation {
 //    jumpToRps(300),
 //    holdFor(5.minutes),
 //    jumpToRps(400),
-    holdFor(5.minutes)
+    holdFor(15.minutes)
 //    ,
 //    jumpToRps(500),
 //    holdFor(30.seconds),
