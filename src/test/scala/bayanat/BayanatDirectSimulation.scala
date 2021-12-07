@@ -6,7 +6,7 @@ import scala.concurrent.duration._
 
 class BayanatDirectSimulation extends Simulation {
 
-  val token = "-ebFG8c_Tiogz75w9uDrcegjO58cnoFfvHidXU0YEpv64U5-IvAAoTGFdKO1zKmiGEcxC2Z5jgw8mq937agqWkfqDU6eWXP5y8pYKy3yiR3-D2VaKZm1o3NhjL-5pErQhzE1lR_54sAfnFU16TO9xw.."
+  val token = "9MQYcR2QRpBtaKbC-5T6CEEfErNkFZudkKMK3fDt7nFroXG28tR3wBKpKXKZXE8kU4dMFs2z1_ePj9MVLSZvEQgImudOeTGAr13P_JB7-o08fhYwecwnW5zA9ooEjc1O_An6qTIXvWQm3uPVNR0Nuw.."
 
   val httpProtocol = http
     .baseUrl("https://maps.bayanat.co.ae") // Here is the root for all relative URLs
